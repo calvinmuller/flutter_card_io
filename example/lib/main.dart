@@ -70,10 +70,23 @@ class _MyAppState extends State<MyApp> {
                   onPressed: _scanCard,
                 ),
               ),
+            ),
+            new Container(
+              margin: new EdgeInsets.all(30.0),
+              child: new Center(
+                child: new RaisedButton(
+                  child: new Text("Reset"),
+                  onPressed: _resetCard,
+                ),
+              ),
             )
           ],
         ),
       ),
     );
+  }
+
+  void _resetCard() {
+    FlutterCardIo.reset();
   }
 }

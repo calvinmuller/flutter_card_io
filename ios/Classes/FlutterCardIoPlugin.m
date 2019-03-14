@@ -38,8 +38,14 @@
         _result = nil;
     }
 
-    if ([@"scanCard" isEqualToString:call.method]) {
+    if ([@"reset" isEqualToString:call.method]) {
+        _scanViewController = nil;
+    } else if ([@"scanCard" isEqualToString:call.method]) {
         _scanViewController.delegate = self;
+
+        if (!_scanViewController) {
+            _scanViewController = [[CardIOPaymentViewController alloc] initWithPaymentDelegate:self];
+        }
 
         _result = result;
         _arguments = call.arguments;
@@ -68,6 +74,7 @@
     _result([NSNull null]);
     _result = nil;
     _arguments = nil;
+    _scanViewController = nil;
 }
 
 - (void)userDidProvideCreditCardInfo:(CardIOCreditCardInfo *)info inPaymentViewController:(CardIOPaymentViewController *)paymentViewController {
@@ -104,8 +111,10 @@
         @"postalCode": ObjectOrNull(info.postalCode)
     });
     [_scanViewController dismissViewControllerAnimated:YES completion:nil];
+
     _result = nil;
     _arguments = nil;
+    _scanViewController = nil;
 }
 
 static id ObjectOrNull(id object) {
