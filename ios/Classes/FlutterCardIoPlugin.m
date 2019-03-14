@@ -112,9 +112,8 @@
     });
     [_scanViewController dismissViewControllerAnimated:YES completion:nil];
 
-    _result = nil;
+    _result = nil; d
     _arguments = nil;
-    _scanViewController = nil;
 }
 
 static id ObjectOrNull(id object) {
