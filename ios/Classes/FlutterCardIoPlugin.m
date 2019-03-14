@@ -112,7 +112,7 @@
     });
     [_scanViewController dismissViewControllerAnimated:YES completion:nil];
 
-    _result = nil; d
+    _result = nil;
     _arguments = nil;
 }
 
